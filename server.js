@@ -80,7 +80,9 @@ app.post("/api/chat", async (req, res) => {
     const modelsToTry = [geminiModel];
     
     // Fallback chain with modern models to handle quota/demand issues
+    // Using recommended models from Gemini API documentation
     const fallbacks = [
+      "gemini-3-flash-preview",
       "gemini-3.1-flash-lite",
       "gemini-flash-latest"
     ];
@@ -193,16 +195,26 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
+    // On Vercel, static files are served by Vercel itself via the dist folder and vercel.json rewrites.
+    // We only serve static files here if dist actually exists (e.g. running locally in prod mode).
     const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
-    });
+    if (fs.existsSync(distPath)) {
+      app.use(express.static(distPath));
+      app.get('*', (req, res) => {
+        if (req.path.startsWith('/api')) return; // Don't shadow API routes
+        res.sendFile(path.join(distPath, 'index.html'));
+      });
+    }
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
+  // Only start listening if we're not being required as a module (e.g., in Vercel)
+  if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  }
 }
 
 startServer();
+
+export default app;
