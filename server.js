@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import { Resend } from "resend";
 import dotenv from "dotenv";
@@ -13,23 +12,39 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Initialize Gemini
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  httpOptions: {
-    headers: {
-      'User-Agent': 'aistudio-build',
+// Lazy-loaded Gemini client
+let aiClient = null;
+function getAI() {
+  if (!aiClient) {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY environment variable is not set.");
     }
+    aiClient = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        }
+      }
+    });
   }
-});
+  return aiClient;
+}
 
-// Load grounding data
+// Load grounding data lazily
+let groundingContextCache = null;
 const loadGroundingData = () => {
+  if (groundingContextCache) return groundingContextCache;
   try {
-    const summary = fs.readFileSync(path.join(process.cwd(), "me/summary.txt"), "utf-8");
-    const linkedin = fs.readFileSync(path.join(process.cwd(), "me/linkedin.txt"), "utf-8");
-    const projects = fs.readFileSync(path.join(process.cwd(), "content/projects.json"), "utf-8");
-    return `
+    const summaryPath = path.join(process.cwd(), "me/summary.txt");
+    const linkedinPath = path.join(process.cwd(), "me/linkedin.txt");
+    const projectsPath = path.join(process.cwd(), "content/projects.json");
+
+    const summary = fs.existsSync(summaryPath) ? fs.readFileSync(summaryPath, "utf-8") : "No summary available.";
+    const linkedin = fs.existsSync(linkedinPath) ? fs.readFileSync(linkedinPath, "utf-8") : "No LinkedIn info available.";
+    const projects = fs.existsSync(projectsPath) ? fs.readFileSync(projectsPath, "utf-8") : "[]";
+    
+    groundingContextCache = `
 Resume/Summary:
 ${summary}
 
@@ -39,13 +54,12 @@ ${linkedin}
 Projects:
 ${projects}
 `;
+    return groundingContextCache;
   } catch (e) {
     console.error("Error loading grounding data", e);
     return "Portfolio info not available.";
   }
 };
-
-const groundingContext = loadGroundingData();
 
 // Initialize Resend
 let resend = null;
@@ -69,6 +83,10 @@ const captureLead = {
 };
 
 // API Routes
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", env: process.env.NODE_ENV, vercel: !!process.env.VERCEL });
+});
+
 app.post("/api/chat", async (req, res) => {
   const { messages } = req.body;
   if (!messages || !Array.isArray(messages)) {
@@ -76,6 +94,9 @@ app.post("/api/chat", async (req, res) => {
   }
 
   try {
+    const ai = getAI();
+    const groundingContext = loadGroundingData();
+    
     let geminiModel = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
     const modelsToTry = [geminiModel];
     
@@ -189,11 +210,16 @@ app.post("/api/chat", async (req, res) => {
 // Vite middleware
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
+    try {
+      const { createServer: createViteServer } = await import("vite");
+      const vite = await createViteServer({
+        server: { middlewareMode: true },
+        appType: "spa",
+      });
+      app.use(vite.middlewares);
+    } catch (e) {
+      console.error("Failed to start Vite server:", e);
+    }
   } else {
     // On Vercel, static files are served by Vercel itself via the dist folder and vercel.json rewrites.
     // We only serve static files here if dist actually exists (e.g. running locally in prod mode).
