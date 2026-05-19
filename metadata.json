@@ -1,0 +1,6 @@
+{
+  "name": "Yug Agarwal Portfolio",
+  "description": "Personal AI Portfolio Assistant for Yug Agarwal with Gemini grounded AI chat and lead capture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

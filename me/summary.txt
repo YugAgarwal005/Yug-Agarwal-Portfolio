@@ -1,0 +1,3 @@
+Sophomore B.Tech student in Information Technology at IIIT Bhubaneswar with a strong focus on competitive programming, problem-solving, and building real-world software systems. Specialist on Codeforces and 4-star on CodeChef, with 1000+ problems solved across major platforms and consistent contest participation.
+
+Experienced in applying algorithmic thinking to AI and software projects, including building and deploying an AI-powered portfolio assistant using Python and modern LLM tools. Actively involved in campus tech societies, contributing through mentorship, contest organization, and community building. Driven by continuous learning, disciplined practice, and a desire to create impactful, well-engineered solutions.
