@@ -5,7 +5,6 @@ import { Send, Loader2, User, Bot, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
 export default function ChatWindow({ dark }) {
@@ -122,14 +121,12 @@ export default function ChatWindow({ dark }) {
                 message.role === "user" ? "flex-row-reverse" : "flex-row"
               )}
             >
-              <Avatar className={cn(
-                "size-12 rounded-2xl shrink-0 shadow-lg",
-                message.role === "user" ? "bg-indigo-600" : "bg-slate-800 dark:bg-slate-300"
+              <div className={cn(
+                "size-12 rounded-2xl shrink-0 shadow-lg flex items-center justify-center",
+                message.role === "user" ? "bg-indigo-600 text-white" : "bg-indigo-600 text-white"
               )}>
-                <AvatarFallback className="text-xs font-black text-white dark:text-slate-900 uppercase">
-                  {message.role === "user" ? "ME" : "AI"}
-                </AvatarFallback>
-              </Avatar>
+                {message.role === "user" ? <User size={20} /> : <Bot size={20} />}
+              </div>
               
               <div className={cn(
                 "group relative max-w-[85%] rounded-[2rem] p-6 text-base md:text-lg leading-relaxed shadow-sm transition-all duration-300",
@@ -148,7 +145,9 @@ export default function ChatWindow({ dark }) {
           ))}
           {isLoading && (
             <div className="flex items-start gap-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-               <div className="size-12 rounded-2xl bg-indigo-50 dark:bg-slate-800 shrink-0 animate-pulse" />
+               <div className="size-12 rounded-2xl bg-indigo-600/20 flex items-center justify-center shrink-0 animate-pulse text-indigo-600">
+                 <Bot size={20} />
+               </div>
                <div className="bg-slate-100 dark:bg-slate-900/80 p-6 rounded-[2rem] rounded-tl-none border border-slate-200 dark:border-white/10 w-24 flex justify-center">
                   <div className="flex gap-2">
                     <div className="size-1.5 rounded-full bg-indigo-500 animate-bounce" />

@@ -81,7 +81,7 @@ export default function Hero() {
           </motion.div>
           
           <motion.div 
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-24 w-full max-w-6xl"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-24 w-full max-w-5xl"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -112,8 +112,9 @@ export default function Hero() {
               className="flex flex-col items-center p-6 md:p-8 rounded-3xl glass glow-card hover:scale-105 transition-transform"
             >
               <span className="text-3xl md:text-5xl font-extrabold tracking-tighter text-emerald-500 dark:text-emerald-400 font-heading">{siteConfig.stats.solved}</span>
-              <span className="text-[10px] text-slate-400 uppercase tracking-[0.3em] font-black mt-3">Solved</span>
+              <span className="text-[10px] text-slate-400 uppercase tracking-[0.3em] font-black mt-3">problems solved</span>
             </a>
+            {/* Uncomment this block to restore the 15+ Projects statistic card (remember to adjust grid-cols in the container if needed)
             <a 
               href={siteConfig.links.github} 
               target="_blank" 
@@ -123,6 +124,7 @@ export default function Hero() {
               <span className="text-5xl font-extrabold tracking-tighter text-amber-500 dark:text-amber-400 font-heading">{siteConfig.stats.projectsCount}</span>
               <span className="text-[10px] text-slate-400 uppercase tracking-[0.3em] font-black mt-3">Projects</span>
             </a>
+            */}
           </motion.div>
         </div>
       </div>

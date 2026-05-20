@@ -16,6 +16,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleHomeClick = (e) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "/");
+    }
+  };
+
+  const handleHashClick = (e, hashId) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      const element = document.getElementById(hashId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", `#${hashId}`);
+      }
+    }
+  };
+
   return (
     <nav 
       className={cn(
@@ -26,7 +45,7 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="group flex items-center gap-2">
+        <Link to="/" onClick={handleHomeClick} className="group flex items-center gap-2">
           <span className="text-2xl font-black tracking-tighter font-heading">
             {siteConfig.name}<span className="text-indigo-500 italic">.</span>
           </span>
@@ -34,15 +53,15 @@ export default function Navbar() {
         
         <div className="flex items-center gap-2 md:gap-10">
           <div className="hidden md:flex items-center gap-8 px-6 py-2 rounded-full glass border-slate-200 dark:border-white/5">
-            <Link to="/" className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
+            <Link to="/" onClick={handleHomeClick} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
               Home
             </Link>
-            <a href="#about" className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
+            <Link to="/#about" onClick={(e) => handleHashClick(e, "about")} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
               About
-            </a>
-            <a href="#projects" className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
+            </Link>
+            <Link to="/#projects" onClick={(e) => handleHashClick(e, "projects")} className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 dark:hover:text-white transition-colors">
               Projects
-            </a>
+            </Link>
           </div>
           
           <Link 

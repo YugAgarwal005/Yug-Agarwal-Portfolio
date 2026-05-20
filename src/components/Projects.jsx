@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
@@ -56,15 +57,31 @@ export default function Projects() {
                         target="_blank" 
                         rel="noreferrer" 
                         className="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-500 transition-colors"
+                        title="View Source"
                       >
                         <Github size={20} />
                       </a>
-                      <a 
-                        href="#" 
-                        className="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-500 transition-colors"
-                      >
-                        <ExternalLink size={20} />
-                      </a>
+                      {project.live && (
+                        project.live.startsWith("/") ? (
+                          <Link 
+                            to={project.live}
+                            className="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-500 transition-colors"
+                            title="Live Demo"
+                          >
+                            <ExternalLink size={20} />
+                          </Link>
+                        ) : (
+                          <a 
+                            href={project.live} 
+                            target="_blank"
+                            rel="noreferrer"
+                            className="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-500 transition-colors"
+                            title="Live Demo"
+                          >
+                            <ExternalLink size={20} />
+                          </a>
+                        )
+                      )}
                     </div>
                   </div>
                   <CardTitle className="text-3xl font-bold tracking-tight mb-3 font-heading group-hover:text-indigo-500 transition-colors">

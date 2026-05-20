@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageSquare, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,20 @@ import ChatWindow from "./ChatWindow";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#chat") {
+        setIsOpen(true);
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <>

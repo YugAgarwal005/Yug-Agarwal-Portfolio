@@ -1,20 +1,22 @@
 [
   {
-    "title": "AI Portfolio Assistant",
-    "description": "An intelligent assistant built with Python and LLMs to help showcase projects and experience through interactive chat.",
-    "link": "https://github.com/yugagarwal/portfolio-ai",
-    "tech": ["Python", "OpenAI/Gemini", "LangChain"]
+    "title": "Portfolio Website",
+    "description": "My personal portfolio featuring a sleek UI and an integrated AI assistant that can answer questions about my skills, projects, and experience.",
+    "link": "https://github.com/YugAgarwal005/Yug-Agarwal-Portfolio",
+    "live": "/chat",
+    "tech": ["React", "Express", "Gemini API", "Tailwind CSS"]
   },
   {
-    "title": "CP Library",
-    "description": "A collection of highly optimized algorithms and data structures for competitive programming in C++.",
-    "link": "https://github.com/yugagarwal/cp-library",
-    "tech": ["C++", "Algorithms", "DS"]
+    "title": "Inventory Management System",
+    "description": "A comprehensive DBMS project featuring product cataloging, supplier tracking, and a transactional workflow for sales and restocking.",
+    "link": "https://github.com/YugAgarwal005/Inventory-Management-System",
+    "tech": ["Node.js", "Express", "MySQL", "JavaScript"]
   },
   {
-    "title": "Contest Dashboard",
-    "description": "A real-time dashboard for tracking upcoming coding contests across various platforms like Codeforces, CodeChef, and LeetCode.",
-    "link": "https://github.com/yugagarwal/contest-dash",
-    "tech": ["React", "API", "TypeScript"]
+    "title": "Contest Hub 🏆",
+    "description": "A modern, real-time dashboard that aggregates competitive programming contests from Codeforces, LeetCode, and CodeChef with live countdowns and smart filtering.",
+    "link": "https://github.com/YugAgarwal005/Contest-Tracker",
+    "live": "https://contest-tracker-ivory.vercel.app/",
+    "tech": ["React", "Node.js", "Tailwind CSS", "Vite"]
   }
 ]
