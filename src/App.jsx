@@ -6,6 +6,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { Github, Linkedin, Mail, Code2, Terminal, ExternalLink, Globe } from "lucide-react";
+import { motion } from "motion/react";
 import { siteConfig } from "@/src/lib/site";
 import Navbar from "@/src/components/Navbar";
 import Home from "@/src/pages/Home";
@@ -36,13 +37,185 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToHash />
-      <div className="min-h-screen bg-white dark:bg-[#020617] text-slate-900 dark:text-slate-50 font-sans selection:bg-indigo-100 dark:selection:bg-indigo-500/30">
-        {/* Decorative Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-[20%] right-[10%] w-[20%] h-[20%] bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-[80px]" />
-          <div className="absolute inset-0 bg-grid-black dark:bg-grid-white opacity-20" />
+      <div className="min-h-screen text-slate-100 font-sans selection:bg-orange-500/30 selection:text-white relative">
+        {/* Decorative Velvet Fluid Wave Background inspired by premium iOS/MacOS abstract visuals */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 bg-[#020205]">
+          {/* Main Cosmic Deep Void Base */}
+          <div className="absolute inset-0 bg-[#020205]" />
+
+          {/* Ambient Global Luminous Radial Glows */}
+          <div className="absolute top-[5%] left-[-10%] w-[80%] h-[1000px] bg-[radial-gradient(circle,rgba(244,63,94,0.14)_0%,rgba(139,92,246,0.04)_50%,transparent_100%)] rounded-full blur-[140px]" />
+          <div className="absolute top-[40%] right-[-10%] w-[80%] h-[1000px] bg-[radial-gradient(circle,rgba(6,182,212,0.12)_0%,rgba(79,70,229,0.03)_60%,transparent_100%)] rounded-full blur-[140px]" />
+          <div className="absolute bottom-[5%] left-[-5%] w-[80%] h-[1200px] bg-[radial-gradient(circle,rgba(168,85,247,0.13)_0%,rgba(236,72,153,0.03)_50%,transparent_100%)] rounded-full blur-[140px]" />
+
+          {/* Shared SVG Filters and Gradients */}
+          <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              {/* Outer Neon Glow Filters - optimized for high visibility and rich aura */}
+              <filter id="neon-glow-pink" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="neon-glow-indigo" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="neon-glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+
+              {/* Shadow for 3D Layering Effect */}
+              <filter id="layer-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="25" stdDeviation="30" floodColor="#000000" floodOpacity="0.95" />
+              </filter>
+
+              {/* Glowing Outline Gradients */}
+              <linearGradient id="pink-magenta-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#ff2d55" />
+                <stop offset="50%" stopColor="#ec4899" />
+                <stop offset="100%" stopColor="#d946ef" />
+              </linearGradient>
+              <linearGradient id="indigo-purple-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#6366f1" />
+                <stop offset="50%" stopColor="#8b5cf6" />
+                <stop offset="100%" stopColor="#a855f7" />
+              </linearGradient>
+              <linearGradient id="cyan-blue-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#06b6d4" />
+                <stop offset="50%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#6366f1" />
+              </linearGradient>
+
+              {/* Rich Velvety Body Fills */}
+              <linearGradient id="dark-velvet-pink" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#2e0533" stopOpacity="0.94" />
+                <stop offset="50%" stopColor="#120216" stopOpacity="0.98" />
+                <stop offset="100%" stopColor="#030006" stopOpacity="1" />
+              </linearGradient>
+              <linearGradient id="dark-velvet-indigo" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#0c0e35" stopOpacity="0.92" />
+                <stop offset="60%" stopColor="#030415" stopOpacity="0.98" />
+                <stop offset="100%" stopColor="#010106" stopOpacity="1" />
+              </linearGradient>
+              <linearGradient id="dark-velvet-cyan" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#021a30" stopOpacity="0.91" />
+                <stop offset="50%" stopColor="#010714" stopOpacity="0.98" />
+                <stop offset="100%" stopColor="#000105" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* BACKGROUND LAYER 1: Top / Hero Section (Scrolls up naturally) */}
+          <div className="absolute top-0 left-0 w-full h-[950px] overflow-hidden pointer-events-none">
+            <svg className="absolute inset-0 w-full h-full opacity-95" preserveAspectRatio="none" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Wave 1: Left Vertical Swoop */}
+              <motion.g
+                animate={{
+                  x: [-15, 15, -15],
+                  y: [-20, 10, -20],
+                  rotate: [-0.5, 0.5, -0.5],
+                }}
+                transition={{
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                filter="url(#layer-shadow)"
+              >
+                <path d="M -150 -100 C 400 150, 350 550, -150 950 L -150 -100 Z" fill="url(#dark-velvet-pink)" />
+                <path d="M -150 -100 C 400 150, 350 550, -150 950" stroke="url(#pink-magenta-grad)" strokeWidth="6.5" strokeLinecap="round" filter="url(#neon-glow-pink)" />
+              </motion.g>
+
+              {/* Wave 2: Right/Center S-Curve */}
+              <motion.g
+                animate={{
+                  x: [20, -20, 20],
+                  y: [15, -15, 15],
+                  rotate: [0.8, -0.8, 0.8],
+                }}
+                transition={{
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                filter="url(#layer-shadow)"
+              >
+                <path d="M 550 -150 C 1100 250, 800 600, 1600 1000 L 1600 -150 Z" fill="url(#dark-velvet-indigo)" />
+                <path d="M 550 -150 C 1100 250, 800 600, 1600 1000" stroke="url(#indigo-purple-grad)" strokeWidth="7" strokeLinecap="round" filter="url(#neon-glow-indigo)" />
+              </motion.g>
+            </svg>
+          </div>
+
+          {/* BACKGROUND LAYER 2: Middle / Projects Section (Scrolls naturally) */}
+          <div className="absolute top-[900px] left-0 w-full h-[850px] overflow-hidden pointer-events-none">
+            <svg className="absolute inset-0 w-full h-full opacity-95" preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Wave 3: Horizontal Rolling Wave with cyan neon boundary */}
+              <motion.g
+                animate={{
+                  x: [-20, 20, -20],
+                  y: [15, -15, 15],
+                  rotate: [-0.6, 0.6, -0.6],
+                }}
+                transition={{
+                  duration: 28,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                filter="url(#layer-shadow)"
+              >
+                <path d="M -100 450 C 400 250, 1000 650, 1550 450 L 1550 900 L -100 900 Z" fill="url(#dark-velvet-cyan)" />
+                <path d="M -100 450 C 400 250, 1000 650, 1550 450" stroke="url(#cyan-blue-grad)" strokeWidth="7.5" strokeLinecap="round" filter="url(#neon-glow-cyan)" />
+              </motion.g>
+            </svg>
+          </div>
+
+          {/* BACKGROUND LAYER 3: Bottom / About & Footer Section (Scrolls naturally) */}
+          <div className="absolute bottom-0 left-0 w-full h-[1100px] overflow-hidden pointer-events-none">
+            <svg className="absolute inset-0 w-full h-full opacity-95" preserveAspectRatio="none" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Wave 4: Sweeping curves rising high from bottom left to bottom right */}
+              <motion.g
+                animate={{
+                  x: [-15, 15, -15],
+                  y: [20, -10, 20],
+                  rotate: [-0.8, 0.8, -0.8],
+                }}
+                transition={{
+                  duration: 24,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                filter="url(#layer-shadow)"
+              >
+                <path d="M -100 800 C 450 450, 950 400, 1550 800 L 1550 1100 L -100 1100 Z" fill="url(#dark-velvet-pink)" />
+                <path d="M -100 800 C 450 450, 950 400, 1550 800" stroke="url(#pink-magenta-grad)" strokeWidth="7" strokeLinecap="round" filter="url(#neon-glow-pink)" />
+              </motion.g>
+            </svg>
+          </div>
+
+          {/* Global Glassmorphic Blur Overlay to make the background velvety, smooth, and consistent like the footer blur */}
+          <div 
+            className="absolute inset-0 bg-black/20 pointer-events-none" 
+            style={{ backdropFilter: 'blur(80px)', WebkitBackdropFilter: 'blur(80px)' }}
+          />
+
+          {/* Noise/Grain Overlay for realistic tactile texture */}
+          <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
         </div>
         
         <Navbar />
@@ -53,7 +226,7 @@ export default function App() {
           </Routes>
         </main>
         <ChatWidget />
-        <footer className="pt-24 pb-12 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-900/20 backdrop-blur-xl">
+        <footer className="pt-24 pb-12 border-t border-white/5 bg-black/45 backdrop-blur-2xl">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 pb-16">
               {/* Branding & Mission */}
@@ -103,7 +276,7 @@ export default function App() {
 
             <div className="pt-12 border-t border-slate-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="text-xs font-black uppercase tracking-widest text-slate-400">
-                © {new Date().getFullYear()} Yug Agarwal. Logic x Design.
+                Yug Agarwal. Logic x Design.
               </div>
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400">

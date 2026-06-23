@@ -30,7 +30,7 @@ export default function ChatWidget() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="absolute bottom-20 right-0 w-[90vw] sm:w-[400px] h-[550px] bg-white rounded-3xl shadow-2xl border border-neutral-200 overflow-hidden"
+              className="absolute bottom-20 right-0 w-[90vw] sm:w-[450px] h-[600px] bg-[#04040a]/95 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden"
             >
               <ChatWindow />
             </motion.div>
@@ -39,10 +39,14 @@ export default function ChatWidget() {
 
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 rounded-full shadow-lg bg-neutral-900 hover:bg-neutral-800 transition-all active:scale-95"
+          className="w-16 h-16 rounded-full shadow-2xl bg-indigo-600 hover:bg-indigo-500 text-white transition-all active:scale-90 border border-indigo-500/30 flex items-center justify-center group"
           size="icon"
         >
-          {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+          {isOpen ? (
+            <X size={24} className="transition-transform group-hover:rotate-90 duration-300" />
+          ) : (
+            <MessageSquare size={24} className="transition-transform group-hover:scale-110 duration-300" />
+          )}
         </Button>
       </div>
     </>

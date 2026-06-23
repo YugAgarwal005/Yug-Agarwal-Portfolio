@@ -9,14 +9,15 @@
   {
     "title": "Inventory Management System",
     "description": "A comprehensive DBMS project featuring product cataloging, supplier tracking, and a transactional workflow for sales and restocking.",
-    "link": "https://github.com/YugAgarwal005/Inventory-Management-System",
-    "tech": ["Node.js", "Express", "MySQL", "JavaScript"]
+    "link": "https://github.com/YugAgarwal005/Inventory-Management-Systemm",
+    "live": "https://inventory-management-systemm-nine.vercel.app/",
+    "tech": ["React", "Node.JS", "Express", "Mongo DB", "JWT"]
   },
   {
-    "title": "Contest Hub 🏆",
+    "title": "Contest Hub",
     "description": "A modern, real-time dashboard that aggregates competitive programming contests from Codeforces, LeetCode, and CodeChef with live countdowns and smart filtering.",
     "link": "https://github.com/YugAgarwal005/Contest-Tracker",
     "live": "https://contest-tracker-ivory.vercel.app/",
-    "tech": ["React", "Node.js", "Tailwind CSS", "Vite"]
+    "tech": ["React", "Node.js", "Tailwind CSS"]
   }
 ]

@@ -20,7 +20,7 @@ export default function ChatPage() {
             </p>
           </div>
           
-          <div className="h-[700px] rounded-[3rem] glass border-slate-200 dark:border-white/5 shadow-2xl shadow-indigo-500/10 overflow-hidden relative group">
+          <div className="h-[700px] rounded-[3rem] bg-slate-900/40 backdrop-blur-2xl border border-white/5 shadow-2xl shadow-indigo-950/40 overflow-hidden relative group">
             <ChatWindow dark />
           </div>
         </motion.div>

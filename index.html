@@ -1,9 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yug Agarwal.</title>
+    <script>
+      // Early script error interception to safely silence anonymous or third-party cross-origin scripts or extension failures
+      (function() {
+        var suppress = function(msg, url) {
+          var m = String(msg || "").toLowerCase();
+          var u = String(url || "").toLowerCase();
+          return m.includes("script error") || !u || u.includes("extension") || m.includes("unexpected token '<'") || u.includes("google") || m.includes("resizeobserver");
+        };
+
+        window.onerror = function(message, source, lineno, colno, error) {
+          if (suppress(message, source)) {
+            console.warn("Suppressed early cross-origin/external script error:", message, "from", source);
+            return true; // Prevents the error from bubble-up
+          }
+          return false;
+        };
+
+        window.addEventListener('error', function(e) {
+          if (suppress(e.message, e.filename)) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = e.reason && (e.reason.message || e.reason);
+          if (suppress(reason, '')) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

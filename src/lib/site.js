@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Yug Agarwal",
-  role: "Sophomore @ IIIT Bhubaneswar | Competitive Programmer",
+  role: "Pre final year @ IIIT Bhubaneswar | Competitive Programmer | Full Stack developer",
   description: "Specialist on Codeforces & 4-star on CodeChef. Building real-world software systems with algorithmic precision.",
   links: {
     github: import.meta.env.VITE_GITHUB_URL || "https://github.com/YugAgarwal005/",
@@ -15,7 +15,7 @@ export const siteConfig = {
     "C++", "Python", "Competitive Programming", "Algorithms", "React", "Node.js", "LLMs", "AI Agents"
   ],
   stats: {
-    solved: "1000+",
+    solved: "1200+",
     cf_rating: "Specialist",
     cc_rating: "4 ★",
     projectsCount: "15+"
